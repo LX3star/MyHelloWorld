@@ -1,12 +1,12 @@
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
+
 import java.util.TreeSet;
 
 /**
  * 
- * TODO
+ * TODO GitHub好玩 跟SVN差不多
  * @author huangzq
  * @time 2018年7月2日
  * @project_name Mytest
@@ -34,7 +34,7 @@ public class MyPorker {
 		// 余数
 		int dataM = data % 13;
 
-		String dataNstr = String.valueOf(dataN);
+//		String dataNstr = String.valueOf(dataN);
 		String dataMstr = String.valueOf(dataM);
 
 		switch (dataM) {
@@ -121,8 +121,8 @@ public class MyPorker {
 		getPorker(Cset, allPorkerSet);
 
 		String[] strA = run(Aset);
-		String[] strB = run(Bset);
-		String[] strC = run(Cset);
+//		String[] strB = run(Bset);
+//		String[] strC = run(Cset);
 
 		System.out.println(strA);
 	}
