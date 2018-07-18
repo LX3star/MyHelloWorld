@@ -6,6 +6,7 @@
  * @project_name Mytest
  * @mailbox 1375529585@qq.com
  */
+//的
 public class Myjj {
 	public static void main(String[] args) {
 		int i = 1;
