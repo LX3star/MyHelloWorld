@@ -1,0 +1,99 @@
+html, body, .container {
+	width: 100%;
+	height: 100%
+}
+
+.container {
+	position: relative;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+.container .videoUnder {
+	width: 100%;
+	height: 100%;
+}
+
+.container .videoUnder .videoThis {
+	height: 100%;
+	width: 100%;
+	object-fit: cover
+}
+
+.loginBox {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.loginINBox {
+	margin-left: 40%;
+	margin-top: 300px;
+}
+
+.langClass {
+	position: relative;
+	border-radius: 15px;
+	border: 1px solid rgb(26, 180, 197);
+	background-color: white;
+	padding: 0 10px 0 10px;
+	overflow: hidden;
+	height: 40px;
+	width: 300px;
+	opacity: 0.55;
+}
+
+.langTextClass {
+	position: relative;
+	border: 0px;
+	outline: none;
+	border-radius: 0px 25px 25px 0px;
+	margin-left: 9px;
+	background-color: white !important;
+	height: 100%;
+	width: 50%;
+}
+
+.validImg {
+	width: 80px;
+	margin-top: -33px;
+	margin-left: 180px;
+	height: 80px;
+	z-index: 999;
+}
+
+.validImgInner {
+	width: 88px;
+	height: 30px;
+}
+
+.loginBtnClass {
+	height: 40px;
+	width: 300px;
+	font-family: inherit;
+	font-size: 23px;
+	color: #fff;
+	background-color: #80ff80;
+	border-color: #80ff80;
+	border: 1px solid transparent;
+	border-radius: 15px;
+	opacity: 0.75;
+}
+
+.textLineClass {
+	margin-top: -12px;
+	margin-left: 10px;
+}
+.zhuceTextClass {
+	margin-left: 10px;
+	color: #fff;
+}
+.forgetTextClass {
+	margin-left: 120px;
+	color: #ff0080;
+}

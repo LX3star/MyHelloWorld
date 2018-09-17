@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+    <!-- 注解定时任务 -->
+    <task:annotation-driven/>
+    
+    <!-- 自动扫描com.ake.bems.wechat包 ,将带有注解的类 纳入spring容器管理 -->
+    <context:component-scan base-package="star.myblog"/>
+
+
+    <!-- 配置使Spring采用CGLIB代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>  
+    
+    <!-- 加载properties -->
+    <util:properties id="webappProperties" location="classpath:/conf/webapp.properties"/>
+
+    <!-- ========================================分隔线========================================= -->
+
+    <!-- DBCP数据源 -->
+    <context:property-placeholder location="classpath:conf/jdbc.properties"/>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbcMysql.driverClassName}" />
+        <property name="url" value="${jdbcMysql.url}" />
+        <property name="username" value="${jdbcMysql.username}" />
+        <property name="password" value="${jdbcMysql.password}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="5" />
+        <!-- 连接池最大使用连接数量 -->
+        <property name="maxActive" value="100" />
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="30" />
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="0" />
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="1000" />
+        
+        <!-- 连接空闲时候对空闲连接定期检查，无效的连接被剔除，保证连接的有效性，单位是毫秒 (建议５－３０秒定期检查) -->
+        <property name="timeBetweenEvictionRunsMillis" value="30000" />
+
+        <!-- 当空闲连接未使用的时间超过此值以后，空闲连接被关闭，并重新建立空闲连接，此参数防止服务器段超时关闭客户端的ＳＱＬ连接，单位是毫秒 (建议１０－３０分钟) -->
+        <property name="minEvictableIdleTimeMillis" value="1800000" />
+
+        <!-- 在每次空闲连接回收器线程(如果有)运行时检查的连接数量，最好和maxActive一致-->
+        <property name="numTestsPerEvictionRun" value="100" />
+
+        <property name="validationQuery" value="${jdbcMysql.validationQuery}" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+
+        <!--removeAbandoned: 是否自动回收超时连接-->    
+        <property name="removeAbandoned"  value="true"/>  
+        <!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->    
+        <property name="removeAbandonedTimeout" value="300"/> 
+    </bean>
+    <!-- ========================================分隔线========================================= -->
+
+
+    <!-- ========================================针对myBatis的配置项============================== -->
+    <!-- 配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:star/myblog/dao/mapping/*.xml"/>
+    </bean>
+
+   <!--  配置扫描器，DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="star.myblog.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+    <!-- ========================================分隔线========================================= -->
+
+    <!-- 配置jdbc数据源的事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <aop:config>
+        <aop:pointcut id="serviceMethods" expression="execution(* star.myblog.service..*Impl.*(..)) " />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="add*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="append*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="insert*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="save*" rollback-for="Exception" propagation="REQUIRED" />
+             <tx:method name="check*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="update*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="modify*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="change*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="edit*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="remove*" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="repair" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="delAndRepair" rollback-for="Exception" propagation="REQUIRED" />
+            <tx:method name="getAndSave*" rollback-for="Exception" propagation="REQUIRED" />
+            <!-- 微信消息service -->
+            <tx:method name="route" rollback-for="Exception" propagation="REQUIRED" />
+            
+
+            <tx:method name="get*" propagation="SUPPORTS" />
+            <tx:method name="find*" propagation="SUPPORTS" />
+            <tx:method name="load*" propagation="SUPPORTS" />
+            <tx:method name="search*" propagation="SUPPORTS" />
+            <tx:method name="datagrid*" propagation="SUPPORTS" />
+        </tx:attributes>
+    </tx:advice>
+
+</beans>

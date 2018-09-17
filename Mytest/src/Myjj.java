@@ -1,3 +1,5 @@
+import javax.xml.ws.Action;
+
 /**
  * 
  * TODO 我的GitHub
@@ -21,7 +23,8 @@ public class Myjj {
 
 	private static void run() {
 		// TODO Auto-generated method stub
-		System.out.println("");
-
+		System.out.println("手动阀阿斯顿发送到");
+		
 	}
+
 }

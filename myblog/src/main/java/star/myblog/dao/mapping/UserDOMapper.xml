@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.myblog.dao.UserDOMapper">
+  <resultMap id="BaseResultMap" type="star.myblog.pojo.domain.UserDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="photo" jdbcType="INTEGER" property="photo" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="mailbox" jdbcType="CHAR" property="mailbox" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="created_time" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updated_time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, photo, phone, mailbox, sex, created_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="star.myblog.pojo.domain.UserDO">
+    insert into m_user (id, name, password, 
+      photo, phone, mailbox, sex, 
+      created_time, updated_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{photo,jdbcType=INTEGER}, #{phone,jdbcType=CHAR}, #{mailbox,jdbcType=CHAR}, #{sex,jdbcType=INTEGER}, 
+      #{created_time,jdbcType=TIMESTAMP}, #{updated_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="star.myblog.pojo.domain.UserDO">
+    insert into m_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="mailbox != null">
+        mailbox,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="created_time != null">
+        created_time,
+      </if>
+      <if test="updated_time != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="mailbox != null">
+        #{mailbox,jdbcType=CHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="created_time != null">
+        #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_time != null">
+        #{updated_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="star.myblog.pojo.domain.UserDO">
+    update m_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="mailbox != null">
+        mailbox = #{mailbox,jdbcType=CHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="created_time != null">
+        created_time = #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_time != null">
+        updated_time = #{updated_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="star.myblog.pojo.domain.UserDO">
+    update m_user
+    set name = #{name,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      photo = #{photo,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=CHAR},
+      mailbox = #{mailbox,jdbcType=CHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      created_time = #{created_time,jdbcType=TIMESTAMP},
+      updated_time = #{updated_time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- add by huangzq -->
+  <select id="selectByName" parameterType="String" resultType="star.myblog.pojo.domain.UserDO">
+    select 
+    <include refid="Base_Column_List" />
+    from m_user
+    where name = #{name,jdbcType=CHAR}
+  </select>
+  
+  <select id="selectByLoginDTO" parameterType="star.myblog.pojo.dto.LoginDTO" resultType="star.myblog.pojo.dto.LoginPersonDTO">
+	select A.name as name, A.password as password, A.id as id, B.type as pasWordSafeType, B.answer as pasWordSafeAnswer
+	from m_user AS A
+	inner join m_paswordsafe AS B on B.user_id = A.id
+	where A.name = #{name,jdbcType=CHAR} and A.password = #{password,jdbcType=CHAR}
+  </select>
+</mapper>

@@ -1,0 +1,197 @@
+html, body, .container {
+	width: 100%;
+	height: 100%
+}
+
+.container {
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.BigBox {
+	background-image: url('../image/bing.jpg');
+	width: 100%;
+	height: 100%;
+}
+
+.registerBox {
+	width: 40%;
+	height: 85%;
+	margin-left: 30%; margin-top : 80px;
+	border: 1px solid #c0c0c0;
+	border-radius: 15px;
+	position: absolute;
+	margin-top: 80px;
+}
+
+.titleImage {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	margin-left: 200px;
+	margin-top: 5px;
+}
+
+.img-circle {
+	border-radius: 35%;
+	width: 35%;
+	height: 35%;
+	border: 1px solid transparent;
+	-webkit-filter: grayscale(80%) drop-shadow(8px 8px 10px gray);
+	/* Chrome, Safari, Opera */
+	filter: grayscale(80%) drop-shadow(8px 8px 10px gray);
+}
+
+.textClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 250px;
+	margin-left: 200px;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.passwordClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 290px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.newPasswordClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 330px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.phoneClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 370px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.mailBoxClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 410px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.pwdSafeClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 450px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.pwdSafeClassAn {
+	width: 50%;
+	height: 5%;
+	margin-top: 490px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+
+.SexClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 530px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+.zhuceClass {
+	width: 50%;
+	height: 5%;
+	margin-top: 570px;
+	margin-left: 23%;
+	border: 1px solid #ffff00;
+	position: absolute;
+	border-radius: 10px;
+	opacity: 0.85;
+}
+.wordClass {
+	color: #000000;
+	font-size: 16px;
+	margin-left: 3%;
+	margin-top: 1.5%;
+}
+
+.wirteClass {
+	border: 0px;
+	width: 75%;
+	height: 93%;
+	outline: none;
+	background-color: transparent;
+	position: relative;
+	color: #ffffff;
+	font-size: 20px;
+	margin-top: 1px;
+}
+
+.supWirteClass {
+	border: 0px;
+	width: 68%;
+	height: 93%;
+	outline: none;
+	position: relative;
+	color: #ffffff;
+	font-size: 20px;
+	background-color: transparent;
+	margin-top: 1px;
+	opacity: 0.85;
+}
+.textbox {
+	position: relative;
+    background-color: transparent;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0;
+    border-radius: 10px;
+}  
+
+.zhuCeBtnClass {
+	height: 40px;
+	width: 100%;
+	font-family: inherit;
+	font-size: 23px;
+	color: #fff;
+	background-color: #80ff80;
+	border-color: #80ff80;
+	border: 1px solid transparent;
+	border-radius: 10px;
+	opacity: 0.75;
+}

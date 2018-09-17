@@ -1,0 +1,150 @@
+.bigBox {
+	width: 100%;
+	height: 100%;
+	min-width: 200px;
+	min-height: 800px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.loginBox {
+	width: 100%;
+	max-width: 500px;
+	height: 400px;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -10px;
+	/*设置负值，为要定位子盒子的一半高度*/
+}
+
+.input-group {
+	margin: 0px 0px 15px 0px !important;
+	position: relative;
+	display: table;
+	border-collapse: separate;
+}
+
+.input-group .form-control {
+	position: relative;
+	z-index: 2;
+	float: none;
+	width: 98%;
+	margin-bottom: 0;
+	border: 0px transparent;
+}
+
+.input-group-addon {
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1;
+	color: #ef315b;
+	text-align: center;
+	opacity: 0.35;
+	border: 0px solid transparent;
+}
+
+.input-group .form-control:first-child, .input-group-addon:first-child {
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px
+}
+
+.btn-lg, .btn-group-lg>.btn {
+	padding: 3% 44.5%;
+	font-size: 18px;
+	line-height: 1.3333333;
+	border-radius: 15px;
+}
+
+.btn-info {
+	color: #000;
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	opacity: 0.35;
+}
+
+.Mybtn-info {
+	color: #000;
+	background-color: #00ff80;
+	border-color: #00ff00;
+	opacity: 0.35;
+}
+
+.Mykkbtn-info {
+	color: #000;
+	background-color: #ff8000;
+	border-color: #ff8000;
+	opacity: 0.35;
+}
+
+.btn-sm, .btn-group-sm>.btn {
+	width: 20%;
+	height: 3%;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 10px;
+	font-size: 12px;
+}
+
+.duuBtn {
+	color: #000;
+	background-color: #00ff40;
+	border-color: #00ff00;
+	opacity: 0.35;
+	margin-top: 15px;
+}
+
+.tuuBtn {
+	color: #000;
+	background-color: #ff00ff;
+	border-color: #ff80ff;
+	opacity: 0.35;
+	margin-top: 15px;
+}
+
+.tuuBtn-lg {
+	padding: 3% 39.28%;
+	font-size: 18px;
+	line-height: 1.3333333;
+	border-radius: 15px;
+}
+
+.validImg {
+	width: 75%;
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+.valid {
+	width: 75%;
+}
+
+.video {
+	display: inline-block;
+	vertical-align: baseline;
+	width: 100%;
+	height: 100%;
+	/*加滤镜*/
+	/*-webkit-filter: grayscale(100%);*/
+	/*filter:grayscale(100%);*/
+}
+.viddeo {
+	display: inline-block;
+	vertical-align: baseline;
+	width: 100%;
+	height: 100%;
+}
+.source {
+	min-width: 100%;
+	min-height: 100%;
+	height: auto;
+	width: auto;
+}
+.videoClass {
+	width: 100%;
+    height: 100%;
+}

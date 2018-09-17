@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.myblog.dao.BlogDOMapper">
+  <resultMap id="BaseResultMap" type="star.myblog.pojo.domain.BlogDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="created_time" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updated_time" />
+    <result column="photo" jdbcType="CHAR" property="photo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="star.myblog.pojo.domain.BlogDO">
+    <result column="text" jdbcType="LONGVARCHAR" property="text" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, created_time, updated_time, photo
+  </sql>
+  <sql id="Blob_Column_List">
+    text
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_blog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from m_blog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="star.myblog.pojo.domain.BlogDO">
+    insert into m_blog (id, code, created_time, 
+      updated_time, photo, text
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=INTEGER}, #{created_time,jdbcType=TIMESTAMP}, 
+      #{updated_time,jdbcType=TIMESTAMP}, #{photo,jdbcType=CHAR}, #{text,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="star.myblog.pojo.domain.BlogDO">
+    insert into m_blog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="created_time != null">
+        created_time,
+      </if>
+      <if test="updated_time != null">
+        updated_time,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="text != null">
+        text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="created_time != null">
+        #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_time != null">
+        #{updated_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=CHAR},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="star.myblog.pojo.domain.BlogDO">
+    update m_blog
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="created_time != null">
+        created_time = #{created_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_time != null">
+        updated_time = #{updated_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=CHAR},
+      </if>
+      <if test="text != null">
+        text = #{text,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="star.myblog.pojo.domain.BlogDO">
+    update m_blog
+    set code = #{code,jdbcType=INTEGER},
+      created_time = #{created_time,jdbcType=TIMESTAMP},
+      updated_time = #{updated_time,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=CHAR},
+      text = #{text,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="star.myblog.pojo.domain.BlogDO">
+    update m_blog
+    set code = #{code,jdbcType=INTEGER},
+      created_time = #{created_time,jdbcType=TIMESTAMP},
+      updated_time = #{updated_time,jdbcType=TIMESTAMP},
+      photo = #{photo,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
