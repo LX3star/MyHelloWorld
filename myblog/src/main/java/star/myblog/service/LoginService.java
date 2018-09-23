@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import star.myblog.common.MyblogException;
 import star.myblog.common.ResultModel;
-import star.myblog.pojo.domain.UserDO;
 import star.myblog.pojo.dto.LoginDTO;
 
 /**
