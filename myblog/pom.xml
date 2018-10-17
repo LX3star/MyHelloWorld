@@ -264,6 +264,14 @@
 		    <version>${jsonlib.version}</version>
 		    <classifier>jdk15</classifier>
 		</dependency>
+		
+		<!-- 谷歌的 com.google.common.collect.FluentIterable.做为Java Iterable API的扩展-->
+      	<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>26.0-jre</version>
+		</dependency>
       
 	</dependencies>
   

@@ -8,7 +8,7 @@
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
         <!-- 数据库链接URL、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3309/myblog" userId="root" password="AKE124">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/myblog" userId="root" password="root">
         </jdbcConnection>
         <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
         <javaTypeResolver>
@@ -28,7 +28,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-        <table tableName="m_user" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="m_district" domainObjectName="DistrictDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="true" />
         </table>
 <!--         <table tableName="m_blog" domainObjectName="BlogDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">

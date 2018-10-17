@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="star.myblog.dao.DistrictDOMapper">
+  <resultMap id="BaseResultMap" type="star.myblog.pojo.domain.DistrictDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="citycode" jdbcType="CHAR" property="citycode" />
+    <result column="level" jdbcType="CHAR" property="level" />
+    <result column="center" jdbcType="CHAR" property="center" />
+    <result column="adcode" jdbcType="CHAR" property="adcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, citycode, level, center, adcode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_district
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from m_district
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="star.myblog.pojo.domain.DistrictDO">
+    insert into m_district (id, name, citycode, 
+      level, center, adcode)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{citycode,jdbcType=CHAR}, 
+      #{level,jdbcType=CHAR}, #{center,jdbcType=CHAR}, #{adcode,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="star.myblog.pojo.domain.DistrictDO">
+    insert into m_district
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="citycode != null">
+        citycode,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="center != null">
+        center,
+      </if>
+      <if test="adcode != null">
+        adcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="citycode != null">
+        #{citycode,jdbcType=CHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=CHAR},
+      </if>
+      <if test="center != null">
+        #{center,jdbcType=CHAR},
+      </if>
+      <if test="adcode != null">
+        #{adcode,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="star.myblog.pojo.domain.DistrictDO">
+    update m_district
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="citycode != null">
+        citycode = #{citycode,jdbcType=CHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=CHAR},
+      </if>
+      <if test="center != null">
+        center = #{center,jdbcType=CHAR},
+      </if>
+      <if test="adcode != null">
+        adcode = #{adcode,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="star.myblog.pojo.domain.DistrictDO">
+    update m_district
+    set name = #{name,jdbcType=CHAR},
+      citycode = #{citycode,jdbcType=CHAR},
+      level = #{level,jdbcType=CHAR},
+      center = #{center,jdbcType=CHAR},
+      adcode = #{adcode,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- add by huangzq -->
+  <select id="selectCityCode" resultType="String">
+  	select A.citycode as citycode
+  	from m_district AS A
+  	where A.level = "city"
+  </select>
+</mapper>

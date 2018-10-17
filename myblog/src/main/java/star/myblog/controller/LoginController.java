@@ -1,5 +1,8 @@
 package star.myblog.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,13 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
+
 import star.myblog.common.BaseController;
 import star.myblog.common.FMView;
 import star.myblog.common.ResultBuilderModel;
 import star.myblog.common.ResultModel;
 import star.myblog.common.SystemParameterConstant;
+import star.myblog.pojo.domain.DistrictDO;
 import star.myblog.pojo.dto.LoginDTO;
+import star.myblog.service.DistrictService;
 import star.myblog.service.LoginService;
+import star.myblog.util.GaoDeRequestUtil;
+import star.myblog.util.MyJSONObejctToList;
 
 /**
  * 登录页面的控制层
@@ -36,15 +45,19 @@ public class LoginController extends BaseController {
 	// 注入服务
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private DistrictService districtService;
 	
 	/**
 	 * 得到登录页面
 	 * @param request
 	 * @param response
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "main", method = RequestMethod.GET)
-	public FMView getPage(HttpServletRequest request, HttpServletResponse response) {
+	public FMView getPage(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
 		FMView page = new FMView("/newLogin");	
 		return page;
 	}	
@@ -66,5 +79,15 @@ public class LoginController extends BaseController {
 		}
 	}
 	
-	
+	/**
+	 * @throws UnsupportedEncodingException 
+	 * 
+	 */
+	@RequestMapping(value = "/getData", method = RequestMethod.GET)
+	@ResponseBody
+	public void wirteDistrictData() throws UnsupportedEncodingException {
+		Integer reuslt = districtService.getStreetData();
+		
+		System.out.println(reuslt);
+	}
 }
